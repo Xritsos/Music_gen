@@ -15,7 +15,7 @@ def save_notes_chords(dir: str = ''):
     """
     
     notes = []
-
+    count_tracks = 0
     print()
     print("Reading files...")
     for file in glob.glob(f"{dir}/*.mid"):
@@ -40,6 +40,11 @@ def save_notes_chords(dir: str = ''):
                 notes.append(str(element.pitch))
             elif isinstance(element, chord.Chord):
                 notes.append('.'.join(str(n) for n in element.normalOrder))
+                
+        count_tracks += 1
+        
+    print()
+    print(f"Total number of tracks parsed: {count_tracks}")
 
     print()
     print("Saving file...")
