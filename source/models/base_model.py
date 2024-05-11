@@ -14,7 +14,7 @@ from tensorflow.keras.layers import Activation
 from tensorflow.keras.layers import BatchNormalization as BatchNorm
 
 
-def get_base_model(network_input, n_vocab, predict=False):
+def get_base_model(network_input, n_vocab):
     model = Sequential()
     model.add(LSTM(512, 
                    input_shape=(network_input.shape[1], network_input.shape[2]), 
@@ -32,10 +32,7 @@ def get_base_model(network_input, n_vocab, predict=False):
     model.add(Dense(n_vocab))
     model.add(Activation('softmax'))
     
-    if predict == False:
-        model.compile(loss='categorical_crossentropy', optimizer='rmsprop')
-    else:
-        model.load_weights('./weights-improvement-02-5.0997-bigger.hdf5')
+    model.compile(loss='categorical_crossentropy', optimizer='rmsprop')
 
     return model
     
