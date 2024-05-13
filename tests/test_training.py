@@ -6,7 +6,8 @@ import os
 import sys
 import pickle
 
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+import tensorflow as tf
 from tensorflow.keras.callbacks import ModelCheckpoint
 
 sys.path.append('./')
@@ -48,11 +49,13 @@ def train():
 
     model.fit(network_input, network_output, 
               epochs=2, 
-              batch_size=16, 
+              batch_size=128,
               callbacks=callbacks_list)
     
     
 if __name__ == "__main__":
-    
-    train()
+    print(tf.config.list_physical_devices('GPU'))
+
+    with tf.device('/device:GPU:0'):
+        train()
 

@@ -4,12 +4,13 @@ from music21 import converter, instrument, note, chord, midi
 import pygame
 
 
-file_ = '/home/akahige/Python Work/Music_gen/tests/EyesOnMePiano.mid'
+file_ = './data/test_file.mid'
 notes_to_parse = None
 notes = []
 
 # read file
 mid = converter.parse(file_)
+
 
 def play(music_file):
     clock = pygame.time.Clock()
@@ -24,8 +25,9 @@ def play(music_file):
         # check if playback has finished
         clock.tick(30)
 
-pygame.mixer.pre_init(44100, 16, 2, 4096) #frequency, size, channels, buffersize
-pygame.init() #turn all of pygame on.
+
+pygame.mixer.pre_init(44100, 16, 2, 4096) # frequency, size, channels, buffersize
+pygame.init() # turn all of pygame on.
     
 try:
     # use the midi file you just saved
