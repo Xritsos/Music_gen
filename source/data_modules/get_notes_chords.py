@@ -19,6 +19,8 @@ def save_notes_chords(dir: str = ''):
     print()
     print("Reading files...")
     for file in glob.glob(f"{dir}/*.mid"):
+        print()
+        print(f"=============== {file} =============")
         try:
             midi = converter.parse(file)
         except Exception as ex:
@@ -42,13 +44,14 @@ def save_notes_chords(dir: str = ''):
                 notes.append('.'.join(str(n) for n in element.normalOrder))
                 
         count_tracks += 1
+        print("=============================================")
         
     print()
     print(f"Total number of tracks parsed: {count_tracks}")
 
     print()
     print("Saving file...")
-    with open('./data/notes', 'wb') as filepath:
+    with open('./data/notes_chopin', 'wb') as filepath:
         try:
             pickle.dump(notes, filepath)
         except Exception as ex:
@@ -62,7 +65,7 @@ def save_notes_chords(dir: str = ''):
             
             
 if __name__ == "__main__":
-    directory = './data/'
+    directory = './data/chopin_midi'
     
     save_notes_chords(directory)
     
