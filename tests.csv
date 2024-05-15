@@ -1,0 +1,2 @@
+test_id,learning_rate,batch_size,epochs,sequence_length,weight_decay,optimizer,loss
+1,0.001,32,5,100,0,adam,5.157052993774414
