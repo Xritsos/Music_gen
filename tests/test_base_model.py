@@ -4,6 +4,7 @@ import os
 import sys
 import pickle
 import numpy as np
+import pandas as pd
 from music21 import instrument, note, stream, chord
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
@@ -14,7 +15,7 @@ from source.models import base_model
 # from source.data_modules import sequence
 
 
-def create_midi(prediction_output):
+def create_midi(prediction_output, test_id):
     offset = 0
     output_notes = []
 
@@ -43,7 +44,7 @@ def create_midi(prediction_output):
 
     midi_stream = stream.Stream(output_notes)
 
-    midi_stream.write('midi', fp='./tests/test_output.mid')
+    midi_stream.write('midi', fp=f'./outputs/{test_id}_output.mid')
 
 
 def generate_notes(model, network_input, pitchnames, n_vocab):
@@ -71,11 +72,11 @@ def generate_notes(model, network_input, pitchnames, n_vocab):
     return prediction_output
 
 
-def prepare_sequences(notes, pitchnames, n_vocab):
+def prepare_sequences(notes, pitchnames, n_vocab, seq_length):
     # map between notes and integers and back
     note_to_int = dict((note, number) for number, note in enumerate(pitchnames))
 
-    sequence_length = 100
+    sequence_length = seq_length
     network_input = []
     output = []
     for i in range(0, len(notes) - sequence_length, 1):
@@ -94,7 +95,7 @@ def prepare_sequences(notes, pitchnames, n_vocab):
     return (network_input, normalized_input)
 
 
-def generate():
+def generate(test_id):
     data_path = './data/notes'
     
     try:
@@ -106,20 +107,24 @@ def generate():
         print("Exiting...")
         exit()
         
+    df = pd.read_csv('./tests.csv')
+    
+    sequence_length = int(df['sequence_length'][test_id-1])
+        
     # Get all pitch names
     pitchnames = sorted(set(item for item in notes))
     
     # Get all pitch names
     n_vocab = len(set(notes))
 
-    network_input, normalized_input = prepare_sequences(notes, pitchnames, n_vocab)
-    model = load_model('./model_ckpts/test_model.keras', compile=False)
+    network_input, normalized_input = prepare_sequences(notes, pitchnames, n_vocab, sequence_length)
+    model = load_model(f'./model_ckpts/{test_id}_model.keras', compile=False)
     prediction_output = generate_notes(model, network_input, pitchnames, n_vocab)
-    create_midi(prediction_output)
+    create_midi(prediction_output, test_id)
     
     
 if __name__ == "__main__":
+    test_id = 1
     
-    generate()
-    
+    generate(test_id)
     
