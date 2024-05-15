@@ -4,6 +4,7 @@ https://towardsdatascience.com/how-to-generate-music-using-a-lstm-neural-network
 
 import os
 import sys
+import time
 import pickle
 import pandas as pd
 
@@ -18,9 +19,11 @@ from source.models import base_model
 
 
 def train(test_id):
+    start_time = time.time()
+    
     tf.random.set_seed(11)
     
-    data_path = './data/notes'
+    data_path = './data/notes_chopin'
     
     try:
         with open(data_path, 'rb') as d:
@@ -42,7 +45,16 @@ def train(test_id):
     sequence_length = int(df['sequence_length'][test_id-1])
     weight_decay = float(df['weight_decay'][test_id-1])
     optim = df['optimizer'][test_id-1]
-        
+    
+    print("============== Parameters ===============")
+    print(f"Batch size: {batch_size}")
+    print(f"Learning_rate: {learning_rate}")
+    print(f"Sequence length: {sequence_length}")
+    print(f"Weight decay: {weight_decay}")
+    print(f"Optimizer: {optim}")
+    print(f"Num. of epochs: {n_epochs}")
+    print("=========================================")
+            
     # get amount of pitch names
     n_vocab = len(set(notes))
 
@@ -70,9 +82,13 @@ def train(test_id):
                         batch_size=batch_size, 
                         callbacks=callbacks_list)
     
+    end_time = time.time()
+    runtime = round((end_time-start_time)/60, 2)
+    
     min_loss = min(history.history['loss'])
     
     df.at[test_id-1, 'loss'] = min_loss
+    df.at[test_id-1, 'runtime(min.)'] = runtime
     df.to_csv('./tests.csv', index=False)
     
     epochs = [i for i in range(1, n_epochs+1)]
