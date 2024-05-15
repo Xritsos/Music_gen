@@ -7,8 +7,8 @@ import numpy as np
 from tensorflow.keras import utils
 
 
-def prepare_sequences(notes, n_vocab):
-    sequence_length = 100
+def prepare_sequences(notes, n_vocab, seq_length):
+    sequence_length = seq_length
 
     # get all pitch names
     pitchnames = sorted(set(item for item in notes))
