@@ -22,7 +22,7 @@ def play(file_path):
         
       
 if __name__ == "__main__":
-    file_path = './tests/test_output.mid'
+    file_path = './outputs/1_output.mid'
 
     try:
         play(file_path)
