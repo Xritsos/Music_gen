@@ -6,4 +6,4 @@ test_id,learning_rate,batch_size,epochs,sequence_length,weight_decay,optimizer,l
 5,0.001,256,100,20,0,adam,2.64331150054932,22.59,base model
 6,0.001,256,100,15,0,adam,2.12573575973511,19.52,base model
 7,0.001,256,100,10,0,adam,2.12654614448547,14.95,random pick from 3
-8,0.001,256,200,10,0,adam,,,random pick from 3
+8,0.001,256,200,10,0,adam,1.0379093885421753,24.49,random pick from 3

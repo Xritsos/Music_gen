@@ -124,10 +124,15 @@ def generate(test_id):
     model = load_model(f'./model_ckpts/{test_id}_model.keras', compile=False)
     prediction_output = generate_notes(model, network_input, pitchnames, n_vocab)
     create_midi(prediction_output, test_id)
-    
-    
+
+    try:
+        os.remove(f'./model_ckpts/{test_id}_model.keras')
+    except Exception as ex:
+        print()
+        print(f"Failed to delete keras model due to {ex}")
+
+
 if __name__ == "__main__":
-    test_id = 7
-    
+    test_id = 8
+
     generate(test_id)
-    
