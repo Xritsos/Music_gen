@@ -23,7 +23,7 @@ def train(test_id):
     
     tf.random.set_seed(11)
     
-    data_path = './data/notes_chopin'
+    data_path = './data/notes_chopin_train'
     
     try:
         with open(data_path, 'rb') as d:
