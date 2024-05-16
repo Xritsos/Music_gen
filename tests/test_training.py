@@ -64,7 +64,7 @@ def train(test_id):
     
     if optim == 'adam':
         optimizer = tf.keras.optimizers.Adam(learning_rate=learning_rate,
-                                             weight_decay=weight_decay)
+                                             decay=weight_decay)
     
     model.compile(loss='categorical_crossentropy', optimizer=optimizer)
     
@@ -102,8 +102,6 @@ if __name__ == "__main__":
     print(tf.config.list_physical_devices('GPU'))
     
     test_id = 1
-    
 
     with tf.device('/device:GPU:0'):
         train(test_id)
-
