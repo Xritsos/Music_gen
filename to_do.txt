@@ -1,16 +1,18 @@
 ########## Next Steps ########
 
-- make the training pipeline different
-    * optimizer and model compilation not inside model function
+- make the training pipeline different (on hold)
 
-- take the functions used in test_base_model out and create separate modules
+- take the functions used in test_base_model out and create separate modules (on hold)
 
-- get bug fixes for the training based on:
+- get bug fixes for the training based on: (Priority)
 https://david-exiga.medium.com/music-generation-using-lstm-neural-networks-44f6780a4c5
 
-- find your music tracks (perhaps Chopin's)
+- find your music tracks (Done)
+    * add more (currently 17 tracks)
+    * create sequence for testing not using current chopin_notes (train set),
+    but get test files and create sequences from there
 
-- make model smaller and reduce training time if possible
-    * if you can't migrate code to collabe, keeping the same format if possible
-    * check prices for collab resources
+- more on LSTMs
+
+- 
     
