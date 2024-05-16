@@ -35,4 +35,3 @@ def get_base_model(network_input, n_vocab):
     model.add(Activation('softmax'))
 
     return model
-    

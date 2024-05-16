@@ -63,10 +63,8 @@ def generate_notes(model, network_input, pitchnames, n_vocab):
         prediction = model.predict(prediction_input, verbose=0)
 
         # index = np.argmax(prediction)
-        indices = np.argsort(prediction)[::-1][:3]
+        indices = np.argsort(prediction[0])[::-1][:3]
         index = np.random.choice(indices)
-        while prediction[index] < 0.5:
-            index = np.random.choice(indices)
         
         result = int_to_note[index]
         prediction_output.append(result)
@@ -129,7 +127,7 @@ def generate(test_id):
     
     
 if __name__ == "__main__":
-    test_id = 6
+    test_id = 7
     
     generate(test_id)
     
