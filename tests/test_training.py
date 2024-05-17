@@ -100,8 +100,9 @@ def train(test_id):
     
 if __name__ == "__main__":
     print(tf.config.list_physical_devices('GPU'))
-    
-    test_id = 8
 
-    with tf.device('/device:GPU:0'):
-        train(test_id)
+    for test_id in [9, 10]:
+    # test_id = 9
+
+        with tf.device('/device:GPU:0'):
+            train(test_id)
