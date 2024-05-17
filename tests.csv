@@ -1,12 +1,13 @@
-test_id,learning_rate,batch_size,epochs,sequence_length,weight_decay,optimizer,loss,score,runtime(min.),comments
-1,0.001,256,100,100,0,adam,3.09879446029663,,142.79,base model
-2,0.001,256,100,75,0,adam,4.83957815170288,,82.01,base model
-3,0.001,256,100,10,0,adam,2.08971405029297,,12.68,base model
-4,0.001,256,100,5,0,adam,4.59088706970215,,7.36,base model
-5,0.001,256,100,20,0,adam,2.64331150054932,,22.59,base model
-6,0.001,256,100,15,0,adam,2.12573575973511,,19.52,base model
-7,0.001,256,100,10,0,adam,2.12654614448547,,14.95,random pick from 3
-8,0.001,256,200,10,0,adam,1.03790938854218,,24.49,random pick from 3
-9,0.001,256,400,25,0,adam,0.99936318397522,,107.3,random pick from 3
-10,0.001,256,400,50,0,adam,2.47564935684204,,205.06,random pick from 3
-11,0.001,256,700,50,0,adam,5.23569917678833,0.54,1.23,random pick from 3 / score added from this point on
+test_id,learning_rate,batch_size,epochs,sequence_length,weight_decay,optimizer,dropout,loss,score,runtime(min.),comments,Problems
+1,0.001,256,100,100,0,adam,0.3,3.09879446029663,,142.79,base model,
+2,0.001,256,100,75,0,adam,0.3,4.83957815170288,,82.01,base model,
+3,0.001,256,100,10,0,adam,0.3,2.08971405029297,,12.68,base model,
+4,0.001,256,100,5,0,adam,0.3,4.59088706970215,,7.36,base model,
+5,0.001,256,100,20,0,adam,0.3,2.64331150054932,,22.59,base model,
+6,0.001,256,100,15,0,adam,0.3,2.12573575973511,,19.52,base model,
+7,0.001,256,100,10,0,adam,0.3,2.12654614448547,,14.95,random pick from 3,
+8,0.001,256,200,10,0,adam,0.3,1.03790938854218,,24.49,random pick from 3,
+9,0.001,256,400,25,0,adam,0.3,0.99936318397522,,107.3,random pick from 3,
+10,0.001,256,400,50,0,adam,0.3,2.47564935684204,,205.06,random pick from 3,
+11,0.001,256,700,50,0,adam,0.3,-,0.54,-,random pick from 3 / score added from this point on,interrupted session
+12,0.001,256,100,50,0,adam,0,,,,random pick 2 ,
