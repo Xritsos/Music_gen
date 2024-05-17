@@ -47,7 +47,7 @@ def create_midi(prediction_output, test_id):
     midi_stream.write('midi', fp=f'./outputs/{test_id}_output.mid')
 
 
-def generate_notes(model, network_input, pitchnames, n_vocab):
+def generate_notes(model, network_input, pitchnames, n_vocab, pick):
     # pick a random sequence from the input as a starting point for the prediction
     start = np.random.randint(0, len(network_input)-1)
 
@@ -63,7 +63,7 @@ def generate_notes(model, network_input, pitchnames, n_vocab):
         prediction = model.predict(prediction_input, verbose=0)
 
         # index = np.argmax(prediction)
-        indices = np.argsort(prediction[0])[::-1][:3]
+        indices = np.argsort(prediction[0])[::-1][:pick]
         index = np.random.choice(indices)
         
         result = int_to_note[index]
@@ -114,6 +114,7 @@ def generate(test_id):
     df = pd.read_csv('./tests.csv')
     
     sequence_length = int(df['sequence_length'][test_id-1])
+    pick = int(df['random pick'][test_id-1])
         
     # Get all pitch names
     pitchnames = sorted(set(item for item in notes))
@@ -123,7 +124,7 @@ def generate(test_id):
 
     network_input, normalized_input = prepare_sequences(notes, pitchnames, n_vocab, sequence_length)
     model = load_model(f'./model_ckpts/{test_id}_model.keras', compile=False)
-    prediction_output = generate_notes(model, network_input, pitchnames, n_vocab)
+    prediction_output = generate_notes(model, network_input, pitchnames, n_vocab, pick)
     
     # calculate score
     score = len(np.unique(prediction_output)) / len(prediction_output)
