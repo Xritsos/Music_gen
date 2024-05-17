@@ -97,11 +97,3 @@ def train(test_id):
     log_df = pd.DataFrame(to_file)
     log_df.to_csv(f'./logs/{test_id}.csv', index=False)
     
-    
-if __name__ == "__main__":
-    print(tf.config.list_physical_devices('GPU'))
-
-    test_id = 10
-
-    with tf.device('/device:GPU:0'):
-        train(test_id)

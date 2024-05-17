@@ -123,16 +123,19 @@ def generate(test_id):
     network_input, normalized_input = prepare_sequences(notes, pitchnames, n_vocab, sequence_length)
     model = load_model(f'./model_ckpts/{test_id}_model.keras', compile=False)
     prediction_output = generate_notes(model, network_input, pitchnames, n_vocab)
+    
+    # calculate score
+    score = len(np.unique(prediction_output)) / len(prediction_output)
+    
     create_midi(prediction_output, test_id)
-
+    
+    df = pd.read_csv('./tests.csv')
+    df.at[test_id-1, 'score'] = score
+    df.to_csv('./tests.csv', index=False)
+    
     try:
         os.remove(f'./model_ckpts/{test_id}_model.keras')
     except Exception as ex:
         print()
         print(f"Failed to delete keras model due to {ex}")
 
-
-if __name__ == "__main__":
-    test_id = 10
-
-    generate(test_id)
