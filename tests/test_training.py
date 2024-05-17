@@ -46,7 +46,7 @@ def train(test_id):
     weight_decay = float(df['weight_decay'][test_id-1])
     optim = df['optimizer'][test_id-1]
     
-    print("============== Parameters ===============")
+    print(f"============== Parameters for test {test_id} ===============")
     print(f"Batch size: {batch_size}")
     print(f"Learning_rate: {learning_rate}")
     print(f"Sequence length: {sequence_length}")
@@ -96,4 +96,3 @@ def train(test_id):
     
     log_df = pd.DataFrame(to_file)
     log_df.to_csv(f'./logs/{test_id}.csv', index=False)
-    
