@@ -14,23 +14,23 @@ from tensorflow.keras.layers import Activation
 from tensorflow.keras.layers import BatchNormalization as BatchNorm
 
 
-def get_base_model(network_input, n_vocab):
+def get_base_model(network_input, n_vocab, drop_factor):
     tf.random.set_seed(11)
     
     model = Sequential()
     model.add(LSTM(512, 
                    input_shape=(network_input.shape[1], network_input.shape[2]), 
-                   recurrent_dropout=0.3, 
+                   recurrent_dropout=drop_factor, 
                    return_sequences=True))
     
-    model.add(LSTM(512, return_sequences=True, recurrent_dropout=0.3,))
+    model.add(LSTM(512, return_sequences=True, recurrent_dropout=drop_factor))
     model.add(LSTM(512))
     model.add(BatchNorm())
-    model.add(Dropout(0.3))
+    model.add(Dropout(drop_factor))
     model.add(Dense(256))
     model.add(Activation('relu'))
     model.add(BatchNorm())
-    model.add(Dropout(0.3))
+    model.add(Dropout(drop_factor))
     model.add(Dense(n_vocab))
     model.add(Activation('softmax'))
 
