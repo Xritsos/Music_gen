@@ -9,4 +9,4 @@ test_id,learning_rate,batch_size,epochs,sequence_length,weight_decay,optimizer,l
 8,0.001,256,200,10,0,adam,1.03790938854218,,24.49,random pick from 3
 9,0.001,256,400,25,0,adam,0.99936318397522,,107.3,random pick from 3
 10,0.001,256,400,50,0,adam,2.47564935684204,,205.06,random pick from 3
-11,0.005,256,700,50,0,adam,,,,random pick from 3 / score added from this point on
+11,0.001,256,700,50,0,adam,5.23569917678833,0.54,1.23,random pick from 3 / score added from this point on

@@ -14,6 +14,6 @@ if __name__ == "__main__":
     test_id = 11
 
     with tf.device('/device:GPU:0'):
-        train(test_id)
+        # train(test_id)
         
         generate(test_id)
