@@ -45,6 +45,7 @@ def train(test_id):
     sequence_length = int(df['sequence_length'][test_id-1])
     weight_decay = float(df['weight_decay'][test_id-1])
     optim = df['optimizer'][test_id-1]
+    drop_factor = float(df['dropout'][test_id-1])
     
     print(f"============== Parameters for test {test_id} ===============")
     print(f"Batch size: {batch_size}")
@@ -52,6 +53,7 @@ def train(test_id):
     print(f"Sequence length: {sequence_length}")
     print(f"Weight decay: {weight_decay}")
     print(f"Optimizer: {optim}")
+    print(f"Dropout factor: {drop_factor}")
     print(f"Num. of epochs: {n_epochs}")
     print("=========================================")
             
@@ -60,7 +62,7 @@ def train(test_id):
 
     network_input, network_output = sequence.prepare_sequences(notes, n_vocab, sequence_length)
 
-    model = base_model.get_base_model(network_input, n_vocab)
+    model = base_model.get_base_model(network_input, n_vocab, drop_factor)
     
     if optim == 'adam':
         optimizer = tf.keras.optimizers.Adam(learning_rate=learning_rate,
