@@ -11,9 +11,9 @@ if __name__ == "__main__":
     
     print(tf.config.list_physical_devices('GPU'))
 
-    test_id = 11
+    test_id = 13
 
     with tf.device('/device:GPU:0'):
-        # train(test_id)
+        train(test_id)
         
         generate(test_id)
