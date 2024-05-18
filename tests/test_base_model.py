@@ -99,7 +99,7 @@ def prepare_sequences(notes, pitchnames, n_vocab, seq_length):
 
 
 def generate(test_id):
-    data_path = './data/notes_chopin_train'
+    data_path = './data/notes'
     print()
     print(f"============ Generating for test {test_id} ============ ")
     try:
