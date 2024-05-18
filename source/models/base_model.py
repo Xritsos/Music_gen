@@ -16,7 +16,7 @@ from tensorflow.keras.layers import BatchNormalization as BatchNorm
 
 def get_base_model(network_input, n_vocab, drop_factor):
     tf.random.set_seed(11)
-    
+    tf.keras.utils.set_random_seed(11)
     model = Sequential()
     model.add(LSTM(512, 
                    input_shape=(network_input.shape[1], network_input.shape[2]), 
