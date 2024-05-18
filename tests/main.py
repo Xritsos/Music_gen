@@ -11,7 +11,7 @@ if __name__ == "__main__":
     print(tf.config.list_physical_devices('GPU'))
 
     # test_id = 13
-    for test_id in [16, 17, 18, 19, 20, 21, 22, 23, 24]:
+    for test_id in [25, 26, 27]:
         with tf.device('/device:GPU:0'):
             train(test_id)
         
