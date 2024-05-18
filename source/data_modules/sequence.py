@@ -8,6 +8,7 @@ from tensorflow.keras import utils
 
 
 def prepare_sequences(notes, n_vocab, seq_length):
+    utils.set_random_seed(11)
     sequence_length = seq_length
 
     # get all pitch names
