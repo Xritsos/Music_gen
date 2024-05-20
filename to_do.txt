@@ -8,5 +8,6 @@
 
 - more on LSTMs
 
-- 
+- mention the difficulty of the data due to complex music structures, it's not
+just a beat music
     
