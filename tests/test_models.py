@@ -136,9 +136,9 @@ def generate(test_id):
     df.at[test_id-1, 'score'] = score
     df.to_csv('./tests.csv', index=False)
     
-    try:
-        os.remove(f'./model_ckpts/{test_id}_model.keras')
-    except Exception as ex:
-        print()
-        print(f"Failed to delete keras model due to {ex}")
+    # try:
+    #     os.remove(f'./model_ckpts/{test_id}_model.keras')
+    # except Exception as ex:
+    #     print()
+    #     print(f"Failed to delete keras model due to {ex}")
 
