@@ -27,7 +27,7 @@ def get_bidi_model(network_input, n_vocab, drop_factor):
                                  return_sequences=True))) 
     
     model.add(SeqSelfAttention(attention_activation='sigmoid')) 
-    model.add(Dropout(0.5)) 
+    model.add(Dropout(drop_factor)) 
     model.add(GlobalMaxPooling1D()) 
     model.add(Dense(n_vocab)) 
     model.add(Activation('softmax')) 
