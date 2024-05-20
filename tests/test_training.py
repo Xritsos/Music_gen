@@ -22,8 +22,9 @@ def train(test_id):
     start_time = time.time()
     
     tf.random.set_seed(11)
+    tf.keras.utils.set_random_seed(11)
     
-    data_path = './data/notes'
+    data_path = './data/notes_chopin_train'
     
     try:
         with open(data_path, 'rb') as d:
