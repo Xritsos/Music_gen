@@ -9,6 +9,7 @@ from music21 import instrument, note, stream, chord
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
 from tensorflow.keras.models import load_model
+from keras_self_attention import SeqSelfAttention
 
 sys.path.append('./')
 # from source.models import base_model, bidi_model
@@ -123,7 +124,7 @@ def generate(test_id):
     n_vocab = len(set(notes))
 
     network_input, normalized_input = prepare_sequences(notes, pitchnames, n_vocab, sequence_length)
-    model = load_model(f'./model_ckpts/{test_id}_model.keras', compile=False)
+    model = load_model(f'./model_ckpts/{test_id}_model.keras', custom_objects={'SeqSelfAttention': SeqSelfAttention}, compile=False)
     prediction_output = generate_notes(model, network_input, pitchnames, n_vocab, pick)
     
     # calculate score
