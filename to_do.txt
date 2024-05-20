@@ -1,16 +1,10 @@
 ########## Next Steps ########
 
+- fix csv file bug with loss score
+
 - make the training pipeline different (on hold)
 
 - take the functions used in test_base_model out and create separate modules (on hold)
-
-- get bug fixes for the training based on: (Priority)
-https://david-exiga.medium.com/music-generation-using-lstm-neural-networks-44f6780a4c5
-
-- find your music tracks (Done)
-    * add more (currently 17 tracks)
-    * create sequence for testing not using current chopin_notes (train set),
-    but get test files and create sequences from there
 
 - more on LSTMs
 
