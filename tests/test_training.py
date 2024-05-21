@@ -63,8 +63,8 @@ def train(test_id):
 
     network_input, network_output = sequence.prepare_sequences(notes, n_vocab, sequence_length)
 
-    model = bidi_model.get_bidi_model(network_input, n_vocab, drop_factor)
-    # model = base_model.get_base_model(network_input, n_vocab, drop_factor)
+    # model = bidi_model.get_bidi_model(network_input, n_vocab, drop_factor)
+    model = base_model.get_base_model(network_input, n_vocab, drop_factor)
     
     if optim == 'adam':
         optimizer = tf.keras.optimizers.Adam(learning_rate=learning_rate,
