@@ -116,6 +116,9 @@ def generate(test_id):
     
     sequence_length = int(df['sequence_length'][test_id-1])
     pick = int(df['random pick'][test_id-1])
+    
+    print()
+    print(f"Number of random picks: {pick}")
         
     # Get all pitch names
     pitchnames = sorted(set(item for item in notes))
