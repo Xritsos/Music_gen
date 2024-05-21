@@ -127,8 +127,8 @@ def generate(test_id):
     n_vocab = len(set(notes))
 
     network_input, normalized_input = prepare_sequences(notes, pitchnames, n_vocab, sequence_length)
-    # model = load_model(f'./model_ckpts/{test_id}_model.keras', custom_objects={'SeqSelfAttention': SeqSelfAttention}, compile=False)
-    model = load_model(f'./model_ckpts/{test_id}_model.keras', compile=False)
+    model = load_model(f'./model_ckpts/{test_id}_model.keras', custom_objects={'SeqSelfAttention': SeqSelfAttention}, compile=False)
+    # model = load_model(f'./model_ckpts/{test_id}_model.keras', compile=False)
     prediction_output = generate_notes(model, network_input, pitchnames, n_vocab, pick)
     
     # calculate score
