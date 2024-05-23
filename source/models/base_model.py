@@ -19,14 +19,21 @@ def get_base_model(network_input, n_vocab, drop_factor):
     tf.random.set_seed(11)
     tf.keras.utils.set_random_seed(11)
     model = Sequential()
-    model.add(LSTM(256, 
+    model.add(LSTM(1024, 
                    input_shape=(network_input.shape[1], network_input.shape[2]), 
                    recurrent_dropout=drop_factor, 
                    return_sequences=True,
                    kernel_initializer=initializers.glorot_uniform(seed=0)))
     
-    model.add(LSTM(256, return_sequences=True, recurrent_dropout=drop_factor, kernel_initializer=initializers.glorot_uniform(seed=0)))
+    model.add(LSTM(512, return_sequences=True, 
+                   recurrent_dropout=drop_factor, 
+                   kernel_initializer=initializers.glorot_uniform(seed=0)))
+    
     model.add(LSTM(256, kernel_initializer=initializers.glorot_uniform(seed=0)))
+    model.add(BatchNorm())
+    model.add(Dropout(drop_factor))
+    model.add(Dense(256, kernel_initializer=initializers.glorot_uniform(seed=0)))
+    model.add(Activation('relu'))
     model.add(BatchNorm())
     model.add(Dropout(drop_factor))
     model.add(Dense(128, kernel_initializer=initializers.glorot_uniform(seed=0)))
