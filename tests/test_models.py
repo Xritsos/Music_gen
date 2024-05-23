@@ -52,6 +52,9 @@ def generate_notes(model, network_input, pitchnames, n_vocab, pick):
     # pick a random sequence from the input as a starting point for the prediction
     start = np.random.randint(0, len(network_input)-1)
 
+    print()
+    print(f"Start sequence number: {start}")
+    
     int_to_note = dict((number, note) for number, note in enumerate(pitchnames))
 
     pattern = network_input[start]
