@@ -17,11 +17,8 @@ def plot(test_id):
     if max(epochs) <= 200:
         x_ticks = [i for i in range(0, max(epochs)+20, 20)]
         x_ticks[0] = 1
-    elif max(epochs) > 200 and max(epochs) <= 800:
-        x_ticks = [i for i in range(0, max(epochs)+50, 50)]
-        x_ticks[0] = 1
     else:
-        x_ticks = [i for i in range(0, max(epochs)+100, 100)]
+        x_ticks = [i for i in range(0, max(epochs)+50, 50)]
         x_ticks[0] = 1
         
     y_ticks = np.linspace(min(loss), max(loss), 10)
@@ -37,5 +34,5 @@ def plot(test_id):
 
 if __name__ == "__main__":
     
-    plot(79)
+    plot(74)
     
