@@ -15,7 +15,7 @@ from tensorflow.keras.callbacks import ModelCheckpoint
 sys.path.append('./')
 
 from source.data_modules import sequence
-from source.models import base_model, bidi_model
+from source.models import base_model, bidi_model, complex_model
 
 
 def train(test_id):
@@ -63,8 +63,10 @@ def train(test_id):
 
     network_input, network_output = sequence.prepare_sequences(notes, n_vocab, sequence_length)
 
+    # uncomment to choose architecture
     # model = bidi_model.get_bidi_model(network_input, n_vocab, drop_factor)
-    model = base_model.get_base_model(network_input, n_vocab, drop_factor)
+    # model = base_model.get_base_model(network_input, n_vocab, drop_factor)
+     model = complex_model.get_complex_model(network_input, n_vocab, drop_factor)
     
     if optim == 'adam':
         optimizer = tf.keras.optimizers.Adam(learning_rate=learning_rate,
